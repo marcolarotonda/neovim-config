@@ -9,15 +9,15 @@ return {
         which_key.setup()
 
         -- Register prefixes for the different key mappings we have setup previously
-        which_key.register({
-            ['<leader>/'] = {name = "Comments", _ = 'which_key_ignore'},
-            ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-            ['<leader>d'] = {name = '[D]ebug' , _ = 'which_key_ignore' },
-            ['<leader>e'] = {name = '[E]xplorer', _ = 'which_key_ignore'},
-            ['<leader>f'] = { name = '[F]ind', _ = 'which_key_ignore' },
-            ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-            ['<leader>J'] = { name = '[J]ava', _ = 'which_key_ignore' },
-            ['<leader>w'] = {name = '[W]indow', _ = 'which_key_ignore'}
+        which_key.add({
+            {"<leader>/", desc = "Comments"},
+            {"<leader>d", desc = "[D]ebug"},
+            {"<leader>c", desc = "[C]ode"},
+            {"<leader>e", desc = "[E]xplorer"},
+            {"<leader>f", desc = "[F]ind"},
+            {"<leader>g", desc = "[G]it"},
+            {"<leader>J", desc = "[J]ava"},
+            {"<leader>w", desc = "[W]indow"},
         })
     end
 }
