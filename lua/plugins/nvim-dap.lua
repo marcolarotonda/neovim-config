@@ -21,12 +21,19 @@ return {
         end
 
         -- set a vim motion for <Space> + d + t to toggle a breakpoint at the line where the cursor is currently on
-        vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "[D]ebug [T]oggle Breakpoint" })
+        vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "[D]ebug Toggle [B]reakpoint" })
 
         -- set a vim motion for <Space> + d + s to start the debugger and launch the debugging ui
         vim.keymap.set("n", "<leader>ds", dap.continue, { desc = "[D]ebug [S]tart" })
 
         -- set a vim motion to close the debugging ui
         vim.keymap.set("n", "<leader>dc", dapui.close, {desc = "[D]ebug [C]lose"})
+        vim.keymap.set('n', '<leader>do',dap.step_over, {desc = "[D]ebug Step [O]ver"})
+        vim.keymap.set('n', '<leader>di', dap.step_into, {desc = "[D]ebug Step [I]nto"})
+        vim.keymap.set('n', '<leader>du', dap.step_out, {desc = "[D]ebug Step O[u]t"})
+        vim.keymap.set('n', '<leader>dB', dap.set_breakpoint, {desc = "[D]ebug Set [B]reakpoint"})
+        vim.keymap.set('n', '<leader>dt', dap.terminate, {desc = "[D]ebug [T]erminate"})
+        vim.keymap.set('n', '<leader>dd', dap.disconnect, {desc = "[D]ebug [D]isconnect"})
+        vim.keymap.set('n', '<leader>dC', dap.clear_breakpoints, {desc = "[D]ebug [C]lear breakpoints"})
     end
 }

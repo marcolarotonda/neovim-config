@@ -53,6 +53,7 @@ return {
                     ["<C-k>"] = cmp.mapping.select_prev_item(),
                     -- next suggestion
                     ["<C-j>"] = cmp.mapping.select_next_item(),
+                    ["<TAB>"] = cmp.mapping.select_next_item(),
                     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     -- show completion suggestions
@@ -60,7 +61,7 @@ return {
                     -- close completion window
                     ["<C-e>"] = cmp.mapping.abort(),
                     -- confirm completion, only when you explicitly selected an option
-                    ["<CR>"] = cmp.mapping.confirm({ select = false})
+                    ["<CR>"] = cmp.mapping.confirm({ select = true})
                 }),
                 -- Where and how should cmp rank and find completions
                 -- Order matters, cmp will provide lsp suggestions above all else
