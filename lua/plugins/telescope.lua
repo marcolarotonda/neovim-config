@@ -12,7 +12,11 @@ return {
             local builtin = require('telescope.builtin')
 
             -- set a vim motion to <Space> + f + f to search for files by their names
-            vim.keymap.set('n', '<leader>ff', builtin.find_files, {desc = "[F]ind [F]iles"})
+            -- vim.keymap.set('n', '<leader>ff', builtin.find_files, {desc = "[F]ind [F]iles"})
+            vim.keymap.set('n', '<leader>ff', function()
+                builtin.find_files({ no_ignore = true })
+            end, { desc = "[F]ind [F]iles (include ignored files)" })
+
             -- set a vim motion to <Space> + f + g to search for files based on the text inside of them
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, {desc = "[F]ind by [G]rep"})
             -- set a vim motion to <Space> + f + d to search for Code Diagnostics in the current project
