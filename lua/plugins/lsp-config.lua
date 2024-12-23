@@ -1,3 +1,6 @@
+local db_secrets = require("lua.secrets.db")
+local db_utils = require("lua.utils.db")
+
 return {
     {
         "williamboman/mason.nvim",
@@ -72,10 +75,7 @@ return {
                 settings = {
                     sqlLanguageServer = {
                         connections = {
-                            {
-                                driver = "mysql",
-                                dataSourceName = "root:password@tcp(127.0.0.1:3306)/dnd5e",
-                            },
+                            db_utils.format_config(db_secrets.dnd5e_prod).lsp_config
                         },
                     },
                 },

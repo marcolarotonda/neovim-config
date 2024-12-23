@@ -1,3 +1,6 @@
+local db_utils = require("lua.utils.db")
+local db_secrets = require("lua.secrets.db")
+
 return {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
@@ -14,8 +17,8 @@ return {
         -- Your DBUI configuration
         vim.g.db_ui_use_nerd_fonts = 1
         vim.g.dbs = {
-            { name = "dnd5e_test", url = "mysql://root:password@127.0.0.1:3306/dnd5e" },
-            { name = "dnd5e",      url = "mysql://admin:marcopasswd@127.0.0.1:3307/dnd5e" },
+            db_utils.format_config(db_secrets.dnd5e_test).dadbod_config,
+            db_utils.format_config(db_secrets.dnd5e_prod).dadbod_config,
         }
         vim.g.db_ui_save_location = "~/.config/nvim/db_ui"
     end,
