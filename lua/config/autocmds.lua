@@ -6,3 +6,11 @@ vim.api.nvim_create_autocmd("FileType", {
 		require("config.jdtls").setup_jdtls()
 	end,
 })
+
+-- don't fold query output with vim-dadbod-ui
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'dbout' },
+  callback = function()
+    vim.opt.foldenable = false
+  end,
+})
