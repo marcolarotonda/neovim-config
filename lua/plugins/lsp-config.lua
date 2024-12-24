@@ -1,5 +1,5 @@
-local db_secrets = require("lua.secrets.db")
-local db_utils = require("lua.utils.db")
+local db_secrets = require("secrets.db")
+local db_utils = require("utils.db")
 
 return {
 	{
@@ -74,9 +74,7 @@ return {
 			lspconfig.sqlls.setup({
 				settings = {
 					sqlLanguageServer = {
-						connections = {
-							db_utils.format_config(db_secrets.dnd5e_prod).lsp_config,
-						},
+                        connections = db_utils.get_config_list(db_secrets).for_lsp
 					},
 				},
 			})

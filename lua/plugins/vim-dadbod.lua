@@ -1,5 +1,5 @@
-local db_utils = require("lua.utils.db")
-local db_secrets = require("lua.secrets.db")
+local db_utils = require("utils.db")
+local db_secrets = require("secrets.db")
 
 return {
 	"kristijanhusak/vim-dadbod-ui",
@@ -16,10 +16,7 @@ return {
 	init = function()
 		-- Your DBUI configuration
 		vim.g.db_ui_use_nerd_fonts = 1
-		vim.g.dbs = {
-			db_utils.format_config(db_secrets.dnd5e_test).dadbod_config,
-			db_utils.format_config(db_secrets.dnd5e_prod).dadbod_config,
-		}
+        vim.g.dbs = db_utils.get_config_list(db_secrets).for_dadbod
 		vim.g.db_ui_save_location = "~/.config/nvim/db_ui"
 	end,
 }
