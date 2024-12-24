@@ -1,3 +1,4 @@
+local jdtls_config = require("secrets.jdtls")
 local function get_jdtls()
 	-- Get the Mason Registry to gain access to downloaded binaries
 	local mason_registry = require("mason-registry")
@@ -8,7 +9,7 @@ local function get_jdtls()
 	-- Obtain the path to the jar which runs the language server
 	local launcher = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
 	-- Declare white operating system we are using, windows use win, macos use mac
-	local SYSTEM = "linux"
+	local SYSTEM = jdtls_config.os
 	-- Obtain the path to configuration files for your specific operating system
 	local config = jdtls_path .. "/config_" .. SYSTEM
 	-- Obtain the path to the Lomboc jar
@@ -42,7 +43,7 @@ local function get_workspace()
 	-- Get the home directory of your operating system
 	local home = os.getenv("HOME")
 	-- Declare a directory where you would like to store project information
-	local workspace_path = home .. "/development/workspace/"
+	local workspace_path = home .. jdtls_config.workspace
 	-- Determine the project name
 	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 	-- Create the workspace directory by concatenating the designated workspace path and the project name
