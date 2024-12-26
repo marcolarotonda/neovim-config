@@ -55,6 +55,35 @@ local get_config_list = function(ts)
 	return to_return
 end
 
+local create_ssh_tunnel = function(db_alias)
+	local databases = require("lua.secrets.db")
+	for _, value in ipairs(databases) do
+		if value.db_alias == db_alias then
+			if value.ssh_tunnel then
+				local command_parts = {
+					"ssh -i ",
+					value.ssh_tunnel.path_pem,
+					" -L ",
+					value.port,
+					":",
+					value.ip,
+					":",
+					value.ssh_tunnel.remote_port,
+					" ",
+					value.user,
+					"@",
+					value.ssh_tunnel.remote_ip,
+					" -N & disown",
+				}
+				local command = table.concat(command_parts)
+                print(command)
+                vim.fn.system(command)
+			end
+		end
+	end
+end
+
 return {
-    get_config_list = get_config_list
+	get_config_list = get_config_list,
+    create_ssh_tunnel = create_ssh_tunnel,
 }
