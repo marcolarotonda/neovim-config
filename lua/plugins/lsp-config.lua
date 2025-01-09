@@ -15,7 +15,7 @@ return {
 		config = function()
 			-- ensure that we have lua language server, java language server, and java test language server are installed
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "jdtls", "pyright", "ruff", "sqlls" },
+				ensure_installed = { "lua_ls", "jdtls", "pyright", "ruff", "sqlls", "dockerls"},
 			})
 		end,
 	},
@@ -78,6 +78,20 @@ return {
 					},
 				},
 			})
+
+            require("lspconfig").dockerls.setup {
+                settings = {
+                    docker = {
+                        languageserver = {
+                            formatter = {
+                                ignoreMultilineInstructions = true,
+                            },
+                        },
+                    }
+                }
+            }
+
+
 
 			-- Set vim motion for <Space> + c + h to show code documentation about the code the cursor is currently over if available
 			vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { desc = "[C]ode [H]over Documentation" })

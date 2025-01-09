@@ -29,6 +29,7 @@ return {
 				"gitignore",
 				"python",
 				"yaml",
+                "dockerfile",
 			},
 			-- make sure highlighting it anabled
 			highlight = { enable = true },
