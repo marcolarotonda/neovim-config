@@ -188,8 +188,8 @@ local function setup_jdtls()
 				enabled = true,
 				-- Use the Google Style guide for code formattingh
 				settings = {
-					url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
-					profile = "GoogleStyle",
+					url = vim.fn.stdpath("config") .. "/resources/intellij-java-format.xml",
+					-- profile = "GoogleStyle",
 				},
 			},
 			-- Enable downloading archives from eclipse automatically
