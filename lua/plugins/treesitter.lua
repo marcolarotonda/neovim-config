@@ -30,6 +30,7 @@ return {
 				"python",
 				"yaml",
                 "dockerfile",
+                "go",
 			},
 			-- make sure highlighting it anabled
 			highlight = { enable = true },
