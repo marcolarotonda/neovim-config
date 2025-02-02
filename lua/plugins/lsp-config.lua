@@ -79,7 +79,7 @@ return {
 				},
 			})
 
-            require("lspconfig").dockerls.setup {
+            lspconfig.dockerls.setup {
                 settings = {
                     docker = {
                         languageserver = {
