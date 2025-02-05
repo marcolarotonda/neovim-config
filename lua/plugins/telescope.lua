@@ -14,7 +14,7 @@ return {
 			-- set a vim motion to <Space> + f + f to search for files by their names
 			-- vim.keymap.set('n', '<leader>ff', builtin.find_files, {desc = "[F]ind [F]iles"})
 			vim.keymap.set("n", "<leader>ff", function()
-				builtin.find_files({ no_ignore = true })
+				builtin.find_files({ no_ignore = false })
 			end, { desc = "[F]ind [F]iles (include ignored files)" })
 
 			-- set a vim motion to <Space> + f + g to search for files based on the text inside of them
