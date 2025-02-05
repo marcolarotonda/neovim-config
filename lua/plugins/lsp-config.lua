@@ -15,7 +15,7 @@ return {
 		config = function()
 			-- ensure that we have lua language server, java language server, and java test language server are installed
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "jdtls", "pyright", "ruff", "sqlls", "dockerls"},
+				ensure_installed = { "lua_ls", "jdtls", "basedpyright", "ruff", "sqlls", "dockerls"},
 			})
 		end,
 	},
@@ -49,10 +49,20 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.pyright.setup({
+			lspconfig.basedpyright.setup({
 				settings = {
-					pyright = {
-						disableOrganizeImports = true, -- usa ruff per l'organizzazione degli import
+					basedpyright = {
+						disableOrganizeImports = true,
+						disableTaggedHints = false,
+						analysis = {
+							typeCheckingMode = "standard",
+							useLibraryCodeForTypes = true, -- Analyze library code for type information
+							autoImportCompletions = true,
+							autoSearchPaths = true,
+							diagnosticSeverityOverrides = {
+								reportIgnoreCommentWithoutRule = true,
+							},
+						},
 					},
 					python = {
 						analysis = {
