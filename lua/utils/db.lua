@@ -56,7 +56,7 @@ local get_config_list = function(ts)
 end
 
 local create_ssh_tunnel = function(db_alias)
-	local databases = require("lua.secrets.db")
+	local databases = require("secrets.db")
 	for _, value in ipairs(databases) do
 		if value.db_alias == db_alias then
 			if value.ssh_tunnel then
@@ -70,7 +70,7 @@ local create_ssh_tunnel = function(db_alias)
 					":",
 					value.ssh_tunnel.remote_port,
 					" ",
-					value.user,
+                    value.ssh_tunnel.user,
 					"@",
 					value.ssh_tunnel.remote_ip,
 					" -N & disown",
