@@ -1,7 +1,7 @@
 return {
 	url = "https://gitlab.com/schrieveslaach/sonarlint.nvim",
 	ft = {
-		-- "python",
+		"python",
 		-- "cpp",
 		"java",
 	},
@@ -19,13 +19,13 @@ return {
 					sonar_language_server_path .. "/sonarlint-language-server",
 					"-stdio",
 					"-analyzers",
-					-- vim.fn.expand(analyzers_path .. "/sonarpython.jar"),
+					vim.fn.expand(analyzers_path .. "/sonarpython.jar"),
 					-- vim.fn.expand(analyzers_path .. "/sonarcfamily.jar"),
 					vim.fn.expand(analyzers_path .. "/sonarjava.jar"),
 				},
 			},
 			filetypes = {
-				-- "python",
+				"python",
 				-- "cpp",
 				"java",
 			},
