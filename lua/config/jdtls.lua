@@ -296,7 +296,7 @@ local function setup_jdtls()
 		-- Sometimes this will randomly fail if language server takes to long to startup for the project, if a ClassDefNotFoundException occurs when running
 		-- the debug tool, attempt to run the debug tool while in the main class of the application, or restart the neovim instance
 		-- Unfortunately I have not found an elegant way to ensure this works 100%
-		require("jdtls.dap").setup_dap_main_class_configs()
+		require("jdtls.dap").setup_dap_main_class_configs({config_overrides = {args="--config /Users/marcolarotonda/Development/Java/kte2/src/main/profiles/dev/kte.properties"}})
 		-- Enable jdtls commands to be used in Neovim
 		require("jdtls.setup").add_commands()
 		-- Refresh the codelens

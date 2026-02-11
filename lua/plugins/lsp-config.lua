@@ -15,7 +15,17 @@ return {
 		config = function()
 			-- ensure that we have lua language server, java language server, and java test language server are installed
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "jdtls", "basedpyright", "ruff", "sqlls", "dockerls"},
+				ensure_installed = {
+					"lua_ls",
+					"jdtls",
+					"basedpyright",
+					"ruff",
+					"sqlls",
+					"dockerls",
+					"biome",
+					"ts_ls",
+					"eslint",
+				},
 			})
 		end,
 	},
@@ -25,7 +35,7 @@ return {
 		config = function()
 			-- ensure the java debug adapter is installed
 			require("mason-nvim-dap").setup({
-				ensure_installed = { "java-debug-adapter", "java-test", "debugpy" },
+				ensure_installed = { "java-debug-adapter", "java-test", "debugpy", "js-debug-adapter" },
 			})
 		end,
 	},
@@ -84,23 +94,22 @@ return {
 			lspconfig.sqlls.setup({
 				settings = {
 					sqlLanguageServer = {
-                        connections = db_utils.get_config_list(db_secrets).for_lsp
+						connections = db_utils.get_config_list(db_secrets).for_lsp,
 					},
 				},
 			})
 
-            lspconfig.dockerls.setup {
-                settings = {
-                    docker = {
-                        languageserver = {
-                            formatter = {
-                                ignoreMultilineInstructions = true,
-                            },
-                        },
-                    }
-                }
-            }
-
+			lspconfig.dockerls.setup({
+				settings = {
+					docker = {
+						languageserver = {
+							formatter = {
+								ignoreMultilineInstructions = true,
+							},
+						},
+					},
+				},
+			})
 
 			lspconfig.gopls.setup({
 				settings = {
@@ -113,6 +122,9 @@ return {
 					},
 				},
 			})
+
+			lspconfig.ts_ls.setup({})
+			lspconfig.biome.setup({})
 
 			-- Set vim motion for <Space> + c + h to show code documentation about the code the cursor is currently over if available
 			vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { desc = "[C]ode [H]over Documentation" })

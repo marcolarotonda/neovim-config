@@ -23,7 +23,7 @@ return {
 			vim.keymap.set(
 				"n",
 				"<leader>gl",
-				":Git log --oneline --all --graph --decorate<cr>",
+				":Git log --oneline --all --graph --decorate <cr>",
 				{ desc = "[G]it [L]og --oneline --all --graph --decorate" }
 			)
 			vim.keymap.set("n", "<leader>gs", ":Git status<cr>", { desc = "[G]it [S]tatus" })

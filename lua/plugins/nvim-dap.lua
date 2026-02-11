@@ -11,6 +11,52 @@ return {
 		-- gain access to the dap ui plugin and its functions
 		local dapui = require("dapui")
 
+		dap.adapters["pwa-node"] = {
+			type = "server",
+			host = "localhost",
+			port = "${port}",
+			executable = {
+				command = "node",
+				args = {
+					vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+					"${port}",
+				},
+			},
+		}
+		dap.configurations.typescript = {
+			{
+				type = "pwa-node",
+				request = "launch",
+				name = "My method to launch files",
+				runtimeExecutable = "node",
+				runtimeArgs = { "--import", "tsx", "${file}" },
+				args = { "${file}" },
+				cwd = "${workspaceFolder}",
+				console = "integratedTerminal",
+				skipFiles = { "<node_internals>/**", "node_modules/**" },
+				resolveSourceMapLocations = {
+					"${workspaceFolder}/**",
+					"!**/node_modules/**",
+				},
+			},
+		}
+
+		dap.configurations.typescript[#dap.configurations.typescript + 1] = {
+
+			type = "pwa-node",
+			request = "launch",
+			name = "Debug Node Test Runner",
+			runtimeExecutable = "node",
+			runtimeArgs = { "--import", "tsx", "--test", "${file}" },
+			cwd = "${workspaceFolder}",
+			console = "integratedTerminal",
+			skipFiles = { "<node_internals>/**", "node_modules/**" },
+			resolveSourceMapLocations = {
+				"${workspaceFolder}/**",
+				"!**/node_modules/**",
+			},
+		}
+
 		-- Setup the dap ui with default configuration
 		dapui.setup()
 
