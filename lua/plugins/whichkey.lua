@@ -17,7 +17,6 @@ return {
 			{ "<leader>f", desc = "[F]ind" },
 			{ "<leader>g", desc = "[G]it" },
 			{ "<leader>J", desc = "[J]ava" },
-			{ "<leader>w", desc = "[W]indow" },
 		})
 	end,
 }
