@@ -216,13 +216,13 @@ local function setup_jdtls()
 			completion = {
 				-- When using an unimported static method, how should the LSP rank possible places to import the static method from
 				favoriteStaticMembers = {
+					"org.mockito.Mockito.*",
 					"org.hamcrest.MatcherAssert.assertThat",
 					"org.hamcrest.Matchers.*",
 					"org.hamcrest.CoreMatchers.*",
 					"org.junit.jupiter.api.Assertions.*",
 					"java.util.Objects.requireNonNull",
 					"java.util.Objects.requireNonNullElse",
-					"org.mockito.Mockito.*",
 				},
 				-- Try not to suggest imports from these packages in the code action window
 				filteredTypes = {
@@ -270,11 +270,12 @@ local function setup_jdtls()
 				enabled = true,
 			},
 			-- enable inlay hints for parameter names,
-			inlayHints = {
-				parameterNames = {
-					enabled = "all",
-				},
-			},
+			inlayHints = { enabled = "all" },
+			-- inlayHints = {
+				-- parameterNames = {
+				-- 	enabled = "all",
+				-- },
+			-- },
 		},
 	}
 
@@ -296,7 +297,8 @@ local function setup_jdtls()
 		-- Sometimes this will randomly fail if language server takes to long to startup for the project, if a ClassDefNotFoundException occurs when running
 		-- the debug tool, attempt to run the debug tool while in the main class of the application, or restart the neovim instance
 		-- Unfortunately I have not found an elegant way to ensure this works 100%
-		require("jdtls.dap").setup_dap_main_class_configs({config_overrides = {args="--config /Users/marcolarotonda/Development/Java/kte2/src/main/profiles/dev/kte.properties"}})
+		-- require("jdtls.dap").setup_dap_main_class_configs({config_overrides = {args="--spring.config.location=./src/main/resources/application.yaml"}})
+		require("jdtls.dap").setup_dap_main_class_configs()
 		-- Enable jdtls commands to be used in Neovim
 		require("jdtls.setup").add_commands()
 		-- Refresh the codelens
