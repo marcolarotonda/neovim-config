@@ -57,6 +57,27 @@ return {
 			},
 		}
 
+		dap.configurations.typescript[#dap.configurations.typescript + 1] = {
+			type = "pwa-node",
+			request = "launch",
+			name = "Debug Vitest",
+			runtimeExecutable = "node",
+			runtimeArgs = {
+				"./node_modules/vitest/vitest.mjs",
+				"--run",
+				"${file}",
+			},
+			cwd = "${workspaceFolder}",
+			console = "integratedTerminal",
+			skipFiles = { "<node_internals>/**", "node_modules/**" },
+			resolveSourceMapLocations = {
+				"${workspaceFolder}/**",
+				"!**/node_modules/**",
+			},
+			sourceMaps = true,
+			autoAttachChildProcesses = true,
+		}
+
 		-- Setup the dap ui with default configuration
 		dapui.setup()
 

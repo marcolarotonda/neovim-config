@@ -21,7 +21,8 @@ return {
 					"dockerls",
 					"biome",
 					"ts_ls",
-					"eslint",
+					"eslint@4.8.0",
+					"angularls",
 				},
 			})
 		end,
@@ -56,6 +57,7 @@ return {
 			require("config.lsp.docker").setup(lspconfig, capabilities)
 			require("config.lsp.go").setup(lspconfig, capabilities)
 			require("config.lsp.typescript").setup(lspconfig, capabilities)
+			require("config.lsp.angular").setup(lspconfig, capabilities)
 
 			-- LSP keymaps
 			vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { desc = "[C]ode [H]over Documentation" })
